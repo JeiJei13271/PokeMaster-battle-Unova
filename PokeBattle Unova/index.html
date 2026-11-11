@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokeMaster Battle Unova</title>
+  </head>
+  <body>
+    <div id="stage"></div>
+
+    <!-- Pantalla de título -->
+    <div id="title-screen" class="screen">
+      <div class="title-inner">
+        <div class="title-kicker">Fan engine · demo técnica</div>
+        <h1>POKEMASTER<span>BATTLE</span></h1>
+        <div class="title-sub">Región de Teselia · Combate en tiempo real</div>
+        <div class="title-actions">
+          <button id="btn-new" class="btn primary">Nueva partida</button>
+          <button id="btn-continue" class="btn" disabled>Continuar</button>
+        </div>
+        <div class="title-help">
+          WASD moverse · E hablar · Shift correr<br />
+          En combate: WASD moverse · 1-4 movimientos · Espacio esquiva · C capturar
+        </div>
+      </div>
+    </div>
+
+    <!-- HUD de mundo -->
+    <div id="world-hud" class="hidden">
+      <div id="objective" class="objective"><span class="dot"></span><span id="objective-text"></span></div>
+      <button id="btn-controls" class="icon-btn" title="Controles">⚙</button>
+      <div id="world-hint" class="controls-hint">WASD mover · E hablar · Shift correr · Tab ayuda</div>
+    </div>
+
+    <!-- Diálogo -->
+    <div id="dialogue" class="hidden">
+      <div class="dialogue-box">
+        <div id="dialogue-name" class="dialogue-name"></div>
+        <div id="dialogue-text" class="dialogue-text"></div>
+        <div id="dialogue-next" class="dialogue-next">▼</div>
+        <div id="dialogue-choices" class="dialogue-choices hidden"></div>
+      </div>
+    </div>
+
+    <!-- HUD de combate -->
+    <div id="battle-hud" class="hidden">
+      <div class="battle-vignette"></div>
+      <div class="hp-panel enemy">
+        <div class="hp-top"><span class="hp-name"><img id="enemy-portrait" class="portrait" alt="" /> <span id="enemy-name">—</span></span><span class="hp-lv"><span id="enemy-level">Lv.1</span> <b id="enemy-hp-num">—</b></span></div>
+        <div class="hp-bar"><div id="enemy-ghost" class="hp-ghost"></div><div id="enemy-hp" class="hp-fill"></div></div>
+        <div id="enemy-badges" class="hp-badges"></div>
+      </div>
+      <div class="hp-panel ally">
+        <div class="hp-top"><span class="hp-name"><img id="ally-portrait" class="portrait" alt="" /> <span id="ally-name">—</span></span><span class="hp-lv"><span id="ally-level">Lv.1</span> <b id="ally-hp-num">—</b></span></div>
+        <div class="hp-bar"><div id="ally-ghost" class="hp-ghost"></div><div id="ally-hp" class="hp-fill"></div></div>
+        <div class="energy-row"><span>ENERGÍA</span><div class="energy-bar"><div id="ally-energy" class="energy-fill"></div></div></div>
+        <div id="ally-badges" class="hp-badges"></div>
+      </div>
+      <div id="move-bar" class="move-bar"></div>
+      <div id="battle-hint" class="battle-hint">WASD mover · 1-4 ataque · Espacio esquiva · C capturar (salvajes)</div>
+      <div id="battle-banner" class="battle-banner hidden"></div>
+    </div>
+
+    <!-- Controles táctiles (móvil) -->
+    <div id="touch-controls" class="hidden">
+      <div id="touch-stick" class="touch-stick"><div id="touch-knob" class="touch-knob"></div></div>
+      <div class="touch-pad">
+        <button class="touch-face a" data-action="move1"><b>A</b><span>MOV 1</span></button>
+        <button class="touch-face b" data-action="move2"><b>B</b><span>MENÚ</span></button>
+        <button class="touch-face x battle-only" data-action="move3"><b>X</b><span>MOV 3</span></button>
+        <button class="touch-face y battle-only" data-action="move4"><b>Y</b><span>MOV 4</span></button>
+      </div>
+      <div class="touch-extra battle-only">
+        <button data-action="dodge">ESQUIVA</button>
+        <button data-action="capture">CAPTURA</button>
+      </div>
+    </div>
+
+    <div id="toast-layer" class="toast-layer"></div>
+    <div id="popup-layer" class="popup-layer"></div>
+
+    <div id="help-panel" class="hidden">
+      <h2>Controles</h2>
+      <div class="scheme-options" id="scheme-options">
+        <button class="scheme-btn" data-scheme="auto">Auto</button>
+        <button class="scheme-btn" data-scheme="keyboard">Teclado</button>
+        <button class="scheme-btn" data-scheme="gamepad">Mando</button>
+        <button class="scheme-btn" data-scheme="touch">Táctil</button>
+      </div>
+      <p class="muted" id="scheme-note">Se detecta solo: si conectas un mando o juegas desde el móvil, se activa el modo correspondiente.</p>
+      <ul id="controls-list">
+        <li><b>WASD</b> — moverte por el mundo</li>
+        <li><b>Shift</b> — correr</li>
+        <li><b>E</b> — hablar / interactuar</li>
+        <li><b>TAB</b> — abrir o cerrar esta ayuda</li>
+        <li><b>En combate</b> — 1-4 movimientos, Espacio esquiva con invulnerabilidad breve, C lanzar captura</li>
+      </ul>
+      <p class="muted">Mando: stick o cruceta para moverte, <b>A/B/X/Y</b> para los cuatro movimientos, <b>RB</b> esquiva, <b>LB</b> captura y <b>RT</b> corre. Guardado automático al cambiar de zona o terminar un combate.</p>
+      <button id="btn-close-help" class="btn close-help">Cerrar</button>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

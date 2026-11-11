@@ -1,0 +1,13 @@
+node_modules/
+dist/
+artifacts/
+*.local
+.DS_Store
+.vite/
+/freebuff-sites-build/
+
+# Arte oficial: se descarga en local, no se versiona
+public/sprites/*
+!public/sprites/README.md
+!public/sprites/**/
+!public/sprites/**/.gitkeep
